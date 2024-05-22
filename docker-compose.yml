@@ -5,8 +5,8 @@ services:
     build: 
       context: .
     volumes:
-      - ./drogon:/install/drogon
-    ports:
-      - "8084:8080"
+      - ./work:/install
+    # ports:
+    #   - "8080:8080"
     tty: true
     # restart: always

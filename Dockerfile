@@ -5,7 +5,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update -yqq \
     && apt-get install -yqq --no-install-recommends software-properties-common \
-    sudo curl wget cmake make pkg-config locales git gcc-11 g++-11 \
+    sudo curl wget cmake make pkg-config locales git gcc g++ \
     openssl libssl-dev libjsoncpp-dev uuid-dev zlib1g-dev libc-ares-dev\
     postgresql-server-dev-all libmariadb-dev libsqlite3-dev libhiredis-dev\
     && rm -rf /var/lib/apt/lists/* \
@@ -22,10 +22,12 @@ ENV LANG=en_US.UTF-8 \
 
 ENV DROGON_ROOT="$IROOT/drogon"
 
-# ADD https://api.github.com/repos/drogonframework/drogon/git/refs/heads/master $IROOT/version.json
-# RUN git clone https://github.com/drogonframework/drogon $DROGON_ROOT
+ADD https://api.github.com/repos/drogonframework/drogon/git/refs/heads/master $IROOT/version.json
+RUN git clone https://github.com/drogonframework/drogon $DROGON_ROOT
 
 WORKDIR $DROGON_ROOT
+RUN ./build.sh
+WORKDIR /install
+
 
 EXPOSE 8080
-# RUN ./build.sh
