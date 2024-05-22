@@ -22,9 +22,10 @@ ENV LANG=en_US.UTF-8 \
 
 ENV DROGON_ROOT="$IROOT/drogon"
 
-ADD https://api.github.com/repos/drogonframework/drogon/git/refs/heads/master $IROOT/version.json
-RUN git clone https://github.com/drogonframework/drogon $DROGON_ROOT
+# ADD https://api.github.com/repos/drogonframework/drogon/git/refs/heads/master $IROOT/version.json
+# RUN git clone https://github.com/drogonframework/drogon $DROGON_ROOT
 
 WORKDIR $DROGON_ROOT
 
-RUN ./build.sh
+EXPOSE 8080
+# RUN ./build.sh

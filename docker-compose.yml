@@ -2,11 +2,11 @@ version: '3.8'
 
 services:
   drogon:
-    build:
+    build: 
       context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
     volumes:
-      - ./drogon_config:/usr/local/drogon/config
-    command: "/usr/local/drogon/bin/drogon -c /usr/local/drogon/config/config.json"
+      - ./drogon:/install/drogon
+    ports:
+      - "8084:8080"
+    tty: true
+    # restart: always
